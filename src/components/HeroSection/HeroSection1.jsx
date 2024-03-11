@@ -1,13 +1,86 @@
 import React, { useState } from "react";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const HeroSection1 = () => {
+  const [error, setError] = useState(false);
   const [Name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
   const [number, setNumber] = useState("");
   const [messages, setMessages] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  let emails = "@";
   console.log(Name);
   console.log(email);
-  function HandleSubmit() {}
+  function handleTogglePassword() {
+    setShowPassword(!showPassword);
+  }
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    const specialCharactersRegex = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/;
+    if (Name.length < 1) {
+      setError(false);
+      toast("Username can not be null", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else if (!email.includes(emails)) {
+      setError(false);
+      toast("Please enter the valid Email", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else if (!specialCharactersRegex.test(Password)) {
+      setError(true);
+      if (Password.length < 4) {
+        toast("Password should be greater than 8 letters", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } else if (!specialCharactersRegex.test(Password)) {
+      setError(true);
+      if (Password.length < 4) {
+        toast("Password should be greater than 8 letters", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } else if (Password.length && specialCharactersRegex.test(Password)) {
+      setError(false);
+    }
+  };
   return (
     <div className="w-full h-dvh flex">
       <div className="w-2/3 bg-blue-500 bg-opacity-100">
@@ -42,14 +115,30 @@ const HeroSection1 = () => {
               placeholder="Enter your email"
               className=" rounded-5 text-center font-mono p-2"
             />
+
+            <input
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              id="Password"
+              value={Password}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your Password"
+              className=" rounded-5 text-center font-mono p-2"
+            />
+            <span className="password-toggle" onClick={handleTogglePassword}>
+              <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
+            </span>
+
             <input
               onChange={(e) => {
                 setNumber(e.target.value);
               }}
               value={number}
+              inputMode="numeric"
               type="number"
               placeholder="Enter your Contact Number"
-              className=" rounded-5 text-center font-mono p-2"
+              className=" rounded-5 text-center font-mono p-2 noneappearance"
             />
             <textarea
               value={messages}
@@ -72,6 +161,7 @@ const HeroSection1 = () => {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

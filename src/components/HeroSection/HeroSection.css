@@ -1,0 +1,4 @@
+.noneappearance{
+    -webkit-appearance: none !important;
+    appearance: none !important;
+}
