@@ -2,3 +2,6 @@
     -webkit-appearance: none !important;
     appearance: none !important;
 }
+.font{
+    font-size: 12px;
+}

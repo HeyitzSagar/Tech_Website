@@ -3,6 +3,8 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import "../HeroSection/HeroSection.css";
+import { NavLink } from "react-router-dom";
 
 const HeroSection1 = () => {
   const [error, setError] = useState(false);
@@ -12,6 +14,7 @@ const HeroSection1 = () => {
   const [number, setNumber] = useState("");
   const [messages, setMessages] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [confirmpassword, setConfirmpassword] = useState("");
   let emails = "@";
   console.log(Name);
   console.log(email);
@@ -91,9 +94,9 @@ const HeroSection1 = () => {
           <p className="text-xl mt-40">#Pay After Placement</p>
         </h1>
       </div>
-      <div className="w-1/3     bg-blue-500 bg-opacity-100">
-        <div className="   h-dvh">
-          <form className="text-center flex flex-col m-2 gap-2 bg-gray-100 p-3">
+      <div className="w-1/3  p-4 bg-blue-500 bg-opacity-100">
+        <div className="  p-4 h-dvh">
+          <form className="text-center flex flex-col m-2 gap-2 bg-gray-100 p-5">
             <h1 className="text-center text-xl font-mono font-bold underline ">
               Signup
             </h1>
@@ -105,6 +108,7 @@ const HeroSection1 = () => {
               type="text"
               placeholder="Enter your first Name"
               className="rounded-5 text-center font-mono p-2"
+              required
             />
             <input
               onChange={(e) => {
@@ -114,9 +118,11 @@ const HeroSection1 = () => {
               type="text"
               placeholder="Enter your email"
               className=" rounded-5 text-center font-mono p-2"
+              required
             />
 
             <input
+              required
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -129,8 +135,24 @@ const HeroSection1 = () => {
             <span className="password-toggle" onClick={handleTogglePassword}>
               <FontAwesomeIcon icon={showPassword ? faEye : faEyeSlash} />
             </span>
-
             <input
+              required
+              onChange={(e) => {
+                setConfirmpassword(e.target.value);
+              }}
+              id=""
+              value={confirmpassword}
+              type="text"
+              placeholder="Confirm  your Password"
+              className=" rounded-5 text-center font-mono p-2"
+            />
+            {Password === confirmpassword ? (
+              <h1 className="font italic text-green-500">Password Matches !</h1>
+            ) : (
+              <h1 className="font text-red-500">Password doesnot matches !</h1>
+            )}
+            <input
+              required
               onChange={(e) => {
                 setNumber(e.target.value);
               }}
@@ -140,6 +162,13 @@ const HeroSection1 = () => {
               placeholder="Enter your Contact Number"
               className=" rounded-5 text-center font-mono p-2 noneappearance"
             />
+            {number.length <= 10 ? (
+              " "
+            ) : (
+              <h1 className="font text-red-500 italic">
+                Number cant be greater than 10
+              </h1>
+            )}
             <textarea
               value={messages}
               onChange={(e) => {
@@ -158,6 +187,7 @@ const HeroSection1 = () => {
             >
               Signup
             </button>
+            <h1 className="text-blue-900 font-bold font-mono">Already have an Account ? <NavLink to={"/"} className="text-red-600 font-bold font-mono hover:text-red-900">Login</NavLink></h1>
           </form>
         </div>
       </div>

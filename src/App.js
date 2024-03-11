@@ -1,18 +1,24 @@
 import "./App.css";
+import About from "./Pages/About";
+import Home from "./Pages/Home";
+import Services from "./Pages/Services";
 import { Footer } from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import Banner2 from "./components/HeroSection/Banner2";
-import Banner3 from "./components/HeroSection/Banner3";
-import HeroSection1 from "./components/HeroSection/HeroSection1";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Header/>
-      <HeroSection1/>
-      <Banner2/>
-      <Banner3/>
-      <Footer/>
+      <Router>
+        <Header />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<About />} />
+          <Route exact path="/services" element={<Services />} />
+          <Route exact path="/contact-us" element={<Services />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
