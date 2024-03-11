@@ -187,7 +187,7 @@ const HeroSection1 = () => {
             >
               Signup
             </button>
-            <h1 className="text-blue-900 font-bold font-mono">Already have an Account ? <NavLink to={"/"} className="text-red-600 font-bold font-mono hover:text-red-900">Login</NavLink></h1>
+            <h1 className="text-blue-900 font-bold font-mono">Already have an Account ? <NavLink to={"/login"} className="text-red-600 font-bold font-mono hover:text-red-900">Login</NavLink></h1>
           </form>
         </div>
       </div>
