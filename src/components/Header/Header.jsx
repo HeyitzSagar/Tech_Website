@@ -11,10 +11,15 @@ const Header = () => {
     { text: "Contact", link: "/contact" },
   ];
   return (
-    <div className="bg-gray-400 p-3">
+    <div className="bg-black bg-opacity-75 p-3">
       <div className="max-w-[1240px] item-center justify-between flex mx-auto">
-        <div className="ml-10 text-xl hover:text-gray-700 font-bold">
-          <a href="/" >Exlearn Technologies</a>
+        <div className="ml-10 text-xl text-white border bg-blue-600 bg-opacity-100 font-bold">
+          <a href="/" className="p-4">
+            <span className="text-red-300 hover:text-white duration-300">
+              Exlearn
+            </span>{" "}
+            Technologies
+          </a>
         </div>
         {toggle ? (
           <AiOutlineCloseCircle
