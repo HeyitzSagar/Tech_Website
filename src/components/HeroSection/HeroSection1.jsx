@@ -15,9 +15,10 @@ const HeroSection1 = () => {
   const [messages, setMessages] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [confirmpassword, setConfirmpassword] = useState("");
+
   let emails = "@";
-  console.log(Name);
-  console.log(email);
+  // console.log(Name);
+  // console.log(email);
   function handleTogglePassword() {
     setShowPassword(!showPassword);
   }
@@ -187,7 +188,15 @@ const HeroSection1 = () => {
             >
               Signup
             </button>
-            <h1 className="text-blue-900 font-bold font-mono">Already have an Account ? <NavLink to={"/login"} className="text-red-600 font-bold font-mono hover:text-red-900"><button>Login</button></NavLink></h1>
+            <h1 className="text-blue-900 font-bold font-mono">
+              Already have an Account ?{" "}
+              <NavLink
+                to={"/login"}
+                className="text-red-600 font-bold font-mono hover:text-red-900"
+              >
+                <button>Login</button>
+              </NavLink>
+            </h1>
           </form>
         </div>
       </div>
