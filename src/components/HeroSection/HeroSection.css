@@ -5,3 +5,16 @@
 .font{
     font-size: 12px;
 }
+.cover {
+    width: 90%;
+    height: 95vh;
+    background-image: url('../../imgaes/Let\'s\ Begin\ Our\ Journey\ in\ IT.jpg');
+    background-size: cover;
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    display: flex;
+    /* align-items: center;
+    justify-content: center;
+    text-align: center; */
+    color: #fff;
+  }

@@ -11,10 +11,10 @@ const Header = () => {
     { text: "Contact", link: "/contact" },
   ];
   return (
-    <div className="bg-black bg-opacity-75 p-3">
+    <div className="bg-blue-900 bg-opacity-75 p-5">
       <div className="max-w-[1240px] item-center justify-between flex mx-auto">
-        <div className="ml-10 text-xl text-white border bg-blue-600 bg-opacity-100 font-bold">
-          <a href="/" className="p-4">
+        <div className=" text-xl text-white rounded bg-blue-600 font-mono font-bold">
+          <a href="/" className="p-2 m-2">
             <span className="text-red-300 hover:text-white duration-300">
               Exlearn
             </span>{" "}
@@ -36,10 +36,12 @@ const Header = () => {
             className="md:hidden block text-white text-3xl"
           />
         )}
-        <ul className=" mr-20 hidden md:flex text-white gap-10">
+        <ul className=" mr-20 hidden md:flex text-gray-300  font-bold font-mono text-xl gap-10">
           {navItems.map((item, index) => (
             <li key={index}>
-              <a href={item.link}>{item.text}</a>
+              <a className="hover:text-white duration-300" href={item.link}>
+                {item.text}
+              </a>
             </li>
           ))}
         </ul>

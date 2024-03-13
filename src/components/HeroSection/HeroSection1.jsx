@@ -17,8 +17,6 @@ const HeroSection1 = () => {
   const [confirmpassword, setConfirmpassword] = useState("");
 
   let emails = "@";
-  // console.log(Name);
-  // console.log(email);
   function handleTogglePassword() {
     setShowPassword(!showPassword);
   }
@@ -86,16 +84,16 @@ const HeroSection1 = () => {
     }
   };
   return (
-    <div className="w-full h-dvh flex">
-      <div className="w-2/3 bg-blue-500 bg-opacity-100">
-        <h1 className="p-6 text-center mt-10 text-6xl font-bold ">
+    <div className="w-full bg-blue-600 h-dvh flex">
+      <div className="w-2/3 cover  bg-opacity-100">
+        {/* <h1 className="p-6 text-center text-black mt-10 text-6xl font-bold ">
           Program that Offers <span className="text-blue-900">8LPA</span>{" "}
           <span className="text-white">CTC </span>At{" "}
           <span className="text-blue-900">Zero Cost.</span>
           <p className="text-xl mt-40">#Pay After Placement</p>
-        </h1>
+        </h1> */}
       </div>
-      <div className="w-1/3  p-4 bg-blue-500 bg-opacity-100">
+      <div className="w-1/3  p-4  bg-opacity-100">
         <div className="  p-4 h-dvh">
           <form className="text-center flex flex-col m-2 gap-2 bg-gray-100 p-5">
             <h1 className="text-center text-xl font-mono font-bold underline ">
