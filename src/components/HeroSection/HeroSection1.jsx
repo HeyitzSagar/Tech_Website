@@ -5,107 +5,108 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "../HeroSection/HeroSection.css";
 import { NavLink } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const HeroSection1 = () => {
   const [error, setError] = useState(false);
-  const [Name, setName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [number, setNumber] = useState("");
+  const [mobnumber, SetMobnumber] = useState("");
   const [messages, setMessages] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [confirmpassword, setConfirmpassword] = useState("");
 
   const userData = {
-    Name,
+    name,
     email,
     Password,
-    number
+    mobnumber,
   };
-  
 
   let emails = "@";
   function handleTogglePassword() {
     setShowPassword(!showPassword);
   }
-  const HandleSubmit = async(e) => {
+  const HandleSubmit = async (e) => {
     e.preventDefault();
+    const specialCharactersRegex = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/;
+    if (name.length < 1) {
+      setError(false);
+      toast("Username can not be null", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else if (!email.includes(emails)) {
+      setError(false);
+      toast("Please enter the valid Email", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+    } else if (!specialCharactersRegex.test(Password)) {
+      setError(true);
+      if (Password.length < 4) {
+        toast("Password should be greater than 8 letters", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } else if (!specialCharactersRegex.test(Password)) {
+      setError(true);
+      if (Password.length < 4) {
+        toast("Password should be greater than 8 letters", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    } else if (Password.length && specialCharactersRegex.test(Password)) {
+      setError(false);
+    }
+    // axios
+    //   .post("http://localhost:5000/auth/signup", userData)
+    //   .then((response) => {
+    //     console.log("Response:", response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
     try {
-      await axios.post('http://localhost:3001/auth/signup', userData)
-       .then(res => {
-         console.log('Response:', res);
-       })
-     } catch (error) {
-       console.log("Error:", error);
-     }
-    // const specialCharactersRegex = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/;
-    // if (Name.length < 1) {
-    //   setError(false);
-    //   toast("Username can not be null", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //     transition: Bounce,
-    //   });
-    // } else if (!email.includes(emails)) {
-    //   setError(false);
-    //   toast("Please enter the valid Email", {
-    //     position: "top-right",
-    //     autoClose: 5000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //     transition: Bounce,
-    //   });
-    // } else if (!specialCharactersRegex.test(Password)) {
-    //   setError(true);
-    //   if (Password.length < 4) {
-    //     toast("Password should be greater than 8 letters", {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "light",
-    //       transition: Bounce,
-    //     });
-    //   }
-    // } else if (!specialCharactersRegex.test(Password)) {
-    //   setError(true);
-    //   if (Password.length < 4) {
-    //     toast("Password should be greater than 8 letters", {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "light",
-    //       transition: Bounce,
-    //     });
-    //   }
-    // } else if (Password.length && specialCharactersRegex.test(Password)) {
-    //   setError(false);
-    // }
-    // axios.post('http://localhost:5000/auth/signup', userData)
-    // .then(response => {
-    //   console.log('Response:', response.data);
-    // })
-    // .catch(error => {
-    //   console.error('Error:', error);
-    // });
+      await axios
+        .post("http://localhost:3001/auth/signup", userData)
+        .then((res) => {
+          console.log("Response:", res);
+        });
+    } catch (error) {
+      console.log("Error:", error);
+    }
   };
   return (
     <div className="w-full bg-blue-600 h-dvh flex">
@@ -127,9 +128,9 @@ const HeroSection1 = () => {
               onChange={(e) => {
                 setName(e.target.value);
               }}
-              value={Name}
+              value={name}
               type="text"
-              placeholder="Enter your first Name"
+              placeholder="Enter your first name"
               className="rounded-5 text-center font-mono p-2"
               required
             />
@@ -177,19 +178,19 @@ const HeroSection1 = () => {
             <input
               required
               onChange={(e) => {
-                setNumber(e.target.value);
+                SetMobnumber(e.target.value);
               }}
-              value={number}
+              value={mobnumber}
               inputMode="numeric"
-              type="number"
-              placeholder="Enter your Contact Number"
+              type="mobnumber"
+              placeholder="Enter your Contact mobnumber"
               className=" rounded-5 text-center font-mono p-2 noneappearance"
             />
-            {number.length <= 10 ? (
+            {mobnumber.length <= 10 ? (
               " "
             ) : (
               <h1 className="font text-red-500 italic">
-                Number cant be greater than 10
+                mobnumber cant be greater than 10
               </h1>
             )}
             <textarea
