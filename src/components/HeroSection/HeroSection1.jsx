@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import "../HeroSection/HeroSection.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const HeroSection1 = () => {
@@ -28,68 +28,69 @@ const HeroSection1 = () => {
   function handleTogglePassword() {
     setShowPassword(!showPassword);
   }
+  const navigate = useNavigate();
   const HandleSubmit = async (e) => {
     e.preventDefault();
-    const specialCharactersRegex = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/;
-    if (name.length < 1) {
-      setError(false);
-      toast("Username can not be null", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
-    } else if (!email.includes(emails)) {
-      setError(false);
-      toast("Please enter the valid Email", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
-    } else if (!specialCharactersRegex.test(Password)) {
-      setError(true);
-      if (Password.length < 4) {
-        toast("Password should be greater than 8 letters", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
-      }
-    } else if (!specialCharactersRegex.test(Password)) {
-      setError(true);
-      if (Password.length < 4) {
-        toast("Password should be greater than 8 letters", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
-      }
-    } else if (Password.length && specialCharactersRegex.test(Password)) {
-      setError(false);
-    }
+    // const specialCharactersRegex = /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/;
+    // if (name.length < 1) {
+    //   setError(false);
+    //   toast("Username can not be null", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     transition: Bounce,
+    //   });
+    // } else if (!email.includes(emails)) {
+    //   setError(false);
+    //   toast("Please enter the valid Email", {
+    //     position: "top-right",
+    //     autoClose: 5000,
+    //     hideProgressBar: false,
+    //     closeOnClick: true,
+    //     pauseOnHover: true,
+    //     draggable: true,
+    //     progress: undefined,
+    //     theme: "light",
+    //     transition: Bounce,
+    //   });
+    // } else if (!specialCharactersRegex.test(Password)) {
+    //   setError(true);
+    //   if (Password.length < 4) {
+    //     toast("Password should be greater than 8 letters", {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "light",
+    //       transition: Bounce,
+    //     });
+    //   }
+    // } else if (!specialCharactersRegex.test(Password)) {
+    //   setError(true);
+    //   if (Password.length < 4) {
+    //     toast("Password should be greater than 8 letters", {
+    //       position: "top-right",
+    //       autoClose: 5000,
+    //       hideProgressBar: false,
+    //       closeOnClick: true,
+    //       pauseOnHover: true,
+    //       draggable: true,
+    //       progress: undefined,
+    //       theme: "light",
+    //       transition: Bounce,
+    //     });
+    //   }
+    // } else if (Password.length && specialCharactersRegex.test(Password)) {
+    //   setError(false);
+    // }
     // axios
     //   .post("http://localhost:5000/auth/signup", userData)
     //   .then((response) => {
@@ -102,7 +103,7 @@ const HeroSection1 = () => {
       await axios
         .post("http://localhost:3001/auth/signup", userData)
         .then((res) => {
-          console.log("Response:", res);
+          navigate('/login');
         });
     } catch (error) {
       console.log("Error:", error);
